@@ -7,7 +7,7 @@ app = FastAPI()
 # 127.0.0.1:8000/
 @app.get("/")
 async def root():
-    return {"message": "API funcionando com sucesso!", "num_aleatorio": random.randint(0, 1000)}
+    return {"message": "Commit 2 com sucesso!", "num_aleatorio": random.randint(0, 1000)}
 
 
 # 127.0.0.1:8000/teste1
