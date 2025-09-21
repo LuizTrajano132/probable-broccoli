@@ -1,0 +1,29 @@
+name: Discord Notifications
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord notification on push/merge
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: appleboy/discord-action@v0.0.3
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          username: GitHub Actions
+          message: |
+            Nova atividade no repositório **probable-broccoli**!
+
+            **Evento:** ${{ github.event_name }}
+            **Autor:** ${{ github.actor }}
+            **Commit:** ${{ github.event.head_commit.message }}
+            **Link:** ${{ github.event.head_commit.url }}
